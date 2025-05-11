@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Reflection Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2rem; background: #f4f4f4; }
+    h1 { text-align: center; }
+    .entry { background: white; padding: 1rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    textarea { width: 100%; height: 60px; padding: 0.5rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; }
+    #log { margin-top: 2rem; }
+    .log-entry { background: #e0ffe0; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Daily Reflection Tracker</h1>
+  <div class="entry">
+    <label for="win">1. What did I do well today?</label>
+    <textarea id="win"></textarea><label for="growth">2. What could I have done better?</label>
+<textarea id="growth"></textarea>
+
+<label for="intention">3. What will I try differently tomorrow?</label>
+<textarea id="intention"></textarea>
+
+<button onclick="saveReflection()">Save Reflection</button>
+
+  </div>  <div id="log">
+    <h2>Reflection Log</h2>
+  </div>  <script>
+    function saveReflection() {
+      const win = document.getElementById('win').value;
+      const growth = document.getElementById('growth').value;
+      const intention = document.getElementById('intention').value;
+      const now = new Date().toLocaleDateString();
+
+      if (!win && !growth && !intention) return;
+
+      const log = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `<strong>${now}</strong><br><b>Win:</b> ${win}<br><b>Growth:</b> ${growth}<br><b>Intention:</b> ${intention}`;
+
+      log.appendChild(entry);
+
+      document.getElementById('win').value = '';
+      document.getElementById('growth').value = '';
+      document.getElementById('intention').value = '';
+    }
+  </script></body>
+</html>
